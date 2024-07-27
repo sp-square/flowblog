@@ -52,3 +52,16 @@ For the eslint set-up, you can answer the prompts as follows:
 5. In `server/package.json`, add the following script:
    `"lint": "eslint . --ext .ts"`
 6. Add a `.gitignore` file. A template can be found at `https://github.com/github/gitignore/blob/main/Node.gitignore`
+7. Edit the `tsconfig.json` file so that the `"outDir"` property has value `"./dist"`, like so:
+
+```
+		"outDir": "./dist"
+```
+
+8. At the command line, at the root of the `backend` folder, type `npx tsc` whenever you want to execute the typescript compiler. And you can then run the `server.js` file: `node dist/server.js`.
+   This can be tedious. So you can instead install the dev dependencies `nodemon` and `ts-node` like so: `npm i -D nodemon ts-node`
+   Those two dependencies will work together in development. You can add a script in your `package.json` on the backend like so:
+   ```
+   "start": "nodemon src/server.ts"
+   ```
+   or however you would like to name it.
