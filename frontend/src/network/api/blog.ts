@@ -1,4 +1,4 @@
-import { BlogPost } from '@/models/bolg-post';
+import { BlogPost } from '@/models/blog-post';
 import api from '@/network/axiosInstance';
 
 interface CreateBlogPostValues {
@@ -10,5 +10,10 @@ interface CreateBlogPostValues {
 
 export async function createBlogPost(input: CreateBlogPostValues) {
 	const response = await api.post<BlogPost>('/posts', input);
+	return response.data;
+}
+
+export async function getBlogPosts() {
+	const response = await api.get<BlogPost[]>('/posts');
 	return response.data;
 }

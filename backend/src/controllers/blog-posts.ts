@@ -5,7 +5,7 @@ import BlogPostModel from '../models/blog-post';
 export const getBlogPosts: RequestHandler = async (req, res, next) => {
 	// We use a try-catch block because we want to do a database operation, and this could go wrong
 	try {
-		const allBlogPosts = await BlogPostModel.find().exec();
+		const allBlogPosts = await BlogPostModel.find().sort({ _id: -1 }).exec();
 		res.status(200).json(allBlogPosts);
 	} catch (error) {
 		console.error(error);
