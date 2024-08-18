@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import env from './env';
 import blogPostRoutes from './routes/blog-posts';
+import usersRoutes from './routes/users';
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(
 );
 
 app.use('/posts', blogPostRoutes);
+app.use('/users', usersRoutes);
 
 export default app;
