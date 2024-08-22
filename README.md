@@ -65,3 +65,24 @@ For the eslint set-up, you can answer the prompts as follows:
    "start": "nodemon src/server.ts"
    ```
    or however you would like to name it.
+
+### Set-up authentication with Passportjs
+
+1. To set-up authentication with passport with sessions, as well as three strategies (regular email/pw, github, google), install the following dependencies: `npm i connect-mongo express-session passport passport-github2 passport-google-oauth20 passport-local`
+   We also need the following types for passport: `npm i -D @types/passport @types/passport-github2 @types/passport-google-oauth20 @types/passport-local`
+2. In your backend folder, create a folder you could name `config` that will contain different kinds of configuration files.
+   - create a `passport.ts` file
+   - at the root of the backend folder, create a `@types` folder with a `passport-user.d.ts` file to define the `_id` to the interface
+   - we also need to overwrite the `typeRoots` key in the `tsconfig.json` file like so: `"typeRoots": ["node_modules/@types", "@types"]`
+   - finally we need to add the following at the bottom of the `tsconfig.json` file:
+
+```
+...},
+	"ts-node": {"files": true}
+}
+```
+
+3. Next we want to register the login route in our user routes:
+4. Next we need to configure the sessions. We create a `session.ts` file in the `config` folder
+5. Next we mount sessions and passport as middleware in `app.ts`. And we don't forget ot import the passport config at the top of the file.
+6. Finally, we need to implement automatic login for users that sign up. In other words, a cookie and a session must be generated for a user that signs up. For this, we revisit the user controller and add a few lines to the signUp function.

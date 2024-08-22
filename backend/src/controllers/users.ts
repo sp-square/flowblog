@@ -42,7 +42,11 @@ export const signUp: RequestHandler<
 
 		delete newUser.password;
 
-		res.status(201).json(newUser);
+		// the 'logIn' or 'login' method is available on the req object thanks to 'passport'
+		req.logIn(newUser, (error) => {
+			if (error) throw error;
+			res.status(201).json(newUser);
+		});
 	} catch (error) {
 		next(error);
 	}
