@@ -24,7 +24,7 @@ export const signUp: RequestHandler<
 				strength: 2,
 			})
 			.exec(); // .collation() allows us to compare the usernames without casing
-		console.log('existingUsername', existingUsername);
+
 		if (existingUsername) {
 			throw createHttpError(409, 'Username already taken');
 		}
